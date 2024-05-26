@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Interface with Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            color: white;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 13px;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        .player-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 17px;
+            z-index: 1;
+            margin-bottom: 25px;
+        }
+
+        .hidden-sm {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .hidden-sm {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="controls">
+            <a id="play-button" class="button" href="#" aria-label="Toggle">
+                <i id="play-icon" class="fas fa-play"></i>
+            </a>
+            <a id="volume-button" class="button" href="#" aria-label="Volume">
+                <i id="volume-icon" class="fas fa-volume-up"></i>
+            </a>
+            <a class="button" href="https://vl-anime.web.app" target="_blank" aria-label="Follow us">
+                <i class="fas fa-link"></i>
+            </a>
+        </div>
+        <div class="footer hidden-sm">
+            <!-- Footer content here -->
+        </div>
+    </div>
+    
+    <div class="footer sm-hidden">
+        <!-- Footer content here -->
+    </div>
+    
+    <script>
+        const playButton = document.getElementById('play-button');
+        const playIcon = document.getElementById('play-icon');
+        let isPlaying = false;
+
+        playButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            isPlaying = !isPlaying;
+            playIcon.classList.toggle('fa-play', !isPlaying);
+            playIcon.classList.toggle('fa-pause', isPlaying);
+        });
+
+        const volumeButton = document.getElementById('volume-button');
+        const volumeIcon = document.getElementById('volume-icon');
+        let isMuted = false;
+
+        volumeButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            isMuted = !isMuted;
+            volumeIcon.classList.toggle('fa-volume-up', !isMuted);
+            volumeIcon.classList.toggle('fa-volume-mute', isMuted);
+        });
+    </script>
+</body>
+</html>
